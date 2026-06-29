@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   programs.niri.settings = {
     # Stylix's niri target sets border/focus-ring colors and the cursor, so we
@@ -41,64 +41,72 @@
     # Subtle, fast animations — omarchy-style polish without distraction.
     animations.slowdown = 0.7;
 
-    binds = with config.lib.niri.actions; {
+    # niri-flake's canonical attribute form: `action.<name> = <args>`. No-arg
+    # actions take `{ }`; spawn takes a string or a list of argv strings.
+    binds = {
       # Launchers
-      "Mod+Return".action = spawn "ghostty";
-      "Mod+Space".action = spawn "noctalia-shell" "ipc" "call" "launcher" "toggle";
+      "Mod+Return".action.spawn = "ghostty";
+      "Mod+Space".action.spawn = [
+        "noctalia-shell"
+        "ipc"
+        "call"
+        "launcher"
+        "toggle"
+      ];
 
       # Window management
-      "Mod+Q".action = close-window;
-      "Mod+F".action = maximize-column;
-      "Mod+Shift+F".action = fullscreen-window;
-      "Mod+W".action = toggle-column-tabbed-display;
-      "Mod+V".action = toggle-window-floating;
+      "Mod+Q".action.close-window = { };
+      "Mod+F".action.maximize-column = { };
+      "Mod+Shift+F".action.fullscreen-window = { };
+      "Mod+W".action.toggle-column-tabbed-display = { };
+      "Mod+V".action.toggle-window-floating = { };
 
       # Focus
-      "Mod+H".action = focus-column-left;
-      "Mod+L".action = focus-column-right;
-      "Mod+J".action = focus-window-down;
-      "Mod+K".action = focus-window-up;
+      "Mod+H".action.focus-column-left = { };
+      "Mod+L".action.focus-column-right = { };
+      "Mod+J".action.focus-window-down = { };
+      "Mod+K".action.focus-window-up = { };
 
       # Move
-      "Mod+Shift+H".action = move-column-left;
-      "Mod+Shift+L".action = move-column-right;
-      "Mod+Shift+J".action = move-window-down;
-      "Mod+Shift+K".action = move-window-up;
+      "Mod+Shift+H".action.move-column-left = { };
+      "Mod+Shift+L".action.move-column-right = { };
+      "Mod+Shift+J".action.move-window-down = { };
+      "Mod+Shift+K".action.move-window-up = { };
 
       # Sizing
-      "Mod+R".action = switch-preset-column-width;
-      "Mod+Minus".action = set-column-width "-10%";
-      "Mod+Equal".action = set-column-width "+10%";
+      "Mod+R".action.switch-preset-column-width = { };
+      "Mod+Minus".action.set-column-width = "-10%";
+      "Mod+Equal".action.set-column-width = "+10%";
 
       # Workspaces
-      "Mod+1".action = focus-workspace 1;
-      "Mod+2".action = focus-workspace 2;
-      "Mod+3".action = focus-workspace 3;
-      "Mod+4".action = focus-workspace 4;
-      "Mod+5".action = focus-workspace 5;
-      "Mod+Shift+1".action = move-column-to-workspace 1;
-      "Mod+Shift+2".action = move-column-to-workspace 2;
-      "Mod+Shift+3".action = move-column-to-workspace 3;
-      "Mod+Shift+4".action = move-column-to-workspace 4;
-      "Mod+Shift+5".action = move-column-to-workspace 5;
+      "Mod+1".action.focus-workspace = 1;
+      "Mod+2".action.focus-workspace = 2;
+      "Mod+3".action.focus-workspace = 3;
+      "Mod+4".action.focus-workspace = 4;
+      "Mod+5".action.focus-workspace = 5;
+      "Mod+Shift+1".action.move-column-to-workspace = 1;
+      "Mod+Shift+2".action.move-column-to-workspace = 2;
+      "Mod+Shift+3".action.move-column-to-workspace = 3;
+      "Mod+Shift+4".action.move-column-to-workspace = 4;
+      "Mod+Shift+5".action.move-column-to-workspace = 5;
 
       # Screenshots
-      "Print".action = screenshot;
-      "Mod+Print".action = screenshot-window;
+      "Print".action.screenshot = { };
+      "Mod+Print".action.screenshot-window = { };
 
       # Help + session
-      "Mod+Shift+Slash".action = show-hotkey-overlay;
-      "Mod+Shift+E".action = quit;
+      "Mod+Shift+Slash".action.show-hotkey-overlay = { };
+      "Mod+Shift+E".action.quit = { };
 
       # Media / brightness keys
-      "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
-      "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
-      "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-      "XF86AudioPlay".action = spawn "playerctl" "play-pause";
-      "XF86AudioNext".action = spawn "playerctl" "next";
-      "XF86AudioPrev".action = spawn "playerctl" "previous";
-      "XF86MonBrightnessUp".action = spawn "brightnessctl" "set" "5%+";
-      "XF86MonBrightnessDown".action = spawn "brightnessctl" "set" "5%-";
+      "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" ];
+      "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
+      "XF86AudioMute".action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
+      "XF86AudioPlay".action.spawn = [ "playerctl" "play-pause" ];
+      "XF86AudioNext".action.spawn = [ "playerctl" "next" ];
+      "XF86AudioPrev".action.spawn = [ "playerctl" "previous" ];
+      "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "5%+" ];
+      "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
     };
   };
 }
