@@ -1,0 +1,8 @@
+# Two statix lints are disabled because they fight idiomatic NixOS-module style:
+#   - empty_pattern: flags the conventional `{ ... }:` module header.
+#   - repeated_keys: flags readable dotted paths like `boot.loader.systemd-boot.*`.
+# Every other statix lint stays active.
+disabled = [
+  "empty_pattern",
+  "repeated_keys",
+]
