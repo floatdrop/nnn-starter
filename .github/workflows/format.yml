@@ -1,0 +1,28 @@
+name: format
+
+# Manually-triggered helper that formats the tree with alejandra and commits
+# the result. Useful when you don't have Nix on the machine you're editing from.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - name: Format with alejandra
+        run: nix run nixpkgs#alejandra -- .
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet; then
+            echo "Already formatted."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Format with alejandra"
+          git push
