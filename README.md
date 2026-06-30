@@ -16,6 +16,8 @@ run one command, and get a cohesive, themed, developer-ready Wayland desktop.
 | Terminal     | [Ghostty](https://ghostty.org) |
 | Shell + prompt | Zsh + [Starship](https://starship.rs) (autosuggestions, syntax highlighting, fzf, zoxide, atuin) |
 | Editor       | Neovim, preconfigured (LSP, treesitter, telescope, completion) |
+| Browser      | [Zen](https://zen-browser.app) (beta channel, via the community flake) |
+| File manager | [Nautilus](https://apps.gnome.org/Nautilus/) (GNOME Files) |
 | Font         | Maple Mono NF |
 | Login        | greetd + tuigreet → niri session |
 
@@ -73,6 +75,8 @@ themes/kanagawa.yaml   # vendored base16 palette (Stylix source of truth)
 |------|--------|
 | `Mod`+`Return` | Terminal (ghostty) |
 | `Mod`+`Space` | Noctalia launcher |
+| `Mod`+`B` | Browser (Zen) |
+| `Mod`+`E` | File manager (Nautilus) |
 | `Mod`+`Q` | Close window |
 | `Mod`+`F` / `Mod`+`Shift`+`F` | Maximize column / fullscreen |
 | `Mod`+`H`/`J`/`K`/`L` | Focus left/down/up/right |

@@ -52,6 +52,8 @@
         "launcher"
         "toggle"
       ];
+      "Mod+B".action.spawn = "zen-beta"; # browser
+      "Mod+E".action.spawn = "nautilus"; # file manager
 
       # Window management
       "Mod+Q".action.close-window = {};

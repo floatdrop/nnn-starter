@@ -27,6 +27,14 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Zen browser (not in nixpkgs). It's a repackaged binary (fixed-output
+    # download + wrapFirefox), so following our nixpkgs is cheap and avoids a
+    # duplicate nixpkgs in the closure.
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
