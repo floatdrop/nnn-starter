@@ -13,6 +13,9 @@
       pyright
       rust-analyzer
       typescript-language-server
+      svelte-language-server # svelte / sveltekit LSP (svelteserver)
+      tailwindcss-language-server # tailwind class completion (sveltekit usually)
+      vscode-langservers-extracted # html, css, json + eslint servers
       gopls # go LSP
       go # gopls shells out to the go toolchain
       zls # zig LSP
@@ -114,7 +117,10 @@
       -- LSP
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
-      local servers = { "nil_ls", "lua_ls", "pyright", "rust_analyzer", "ts_ls", "gopls", "zls" }
+      local servers = {
+        "nil_ls", "lua_ls", "pyright", "rust_analyzer", "ts_ls", "gopls", "zls",
+        "svelte", "tailwindcss", "html", "cssls", "jsonls", "eslint",
+      }
       for _, server in ipairs(servers) do
         lspconfig[server].setup({ capabilities = capabilities })
       end
