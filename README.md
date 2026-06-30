@@ -1,7 +1,7 @@
 # nnn-starter
 
 <p align="center">
-  <img src="themes/wallpaper.png" alt="Default wallpaper — a meditating pepe before Hokusai's Great Wave off Kanagawa (静心如海, &quot;static mind, like the sea&quot;)" width="100%">
+  <img src="screenshot.png" alt="Screenshot of the NNN desktop — Niri + Noctalia on NixOS" width="100%">
 </p>
 
 > Three letters, zero compromise — now with batteries included.
