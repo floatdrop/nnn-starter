@@ -1,12 +1,13 @@
 {
   pkgs,
   username,
+  local,
   ...
 }: {
-  # ⇩ EDIT ME: the username comes from `username` in flake.nix. Change it there.
+  # ⇩ username/description come from local.nix.
   users.users.${username} = {
     isNormalUser = true;
-    description = "NNN";
+    description = local.fullName;
     extraGroups = [
       "wheel" # sudo
       "networkmanager"

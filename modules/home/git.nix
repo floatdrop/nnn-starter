@@ -1,10 +1,10 @@
-{...}: {
+{local, ...}: {
   programs.git = {
     enable = true;
 
-    # ⇩ EDIT ME: your identity.
-    userName = "NNN";
-    userEmail = "you@example.com";
+    # ⇩ Identity comes from local.nix.
+    userName = local.gitUserName;
+    userEmail = local.gitUserEmail;
 
     # delta gives syntax-highlighted, side-by-side diffs (themed by Stylix).
     delta = {

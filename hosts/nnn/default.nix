@@ -1,12 +1,12 @@
-{...}: {
+{local, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nnn";
+  networking.hostName = local.hostName;
 
-  # ⇩ EDIT ME: set your timezone, locale and console/keyboard layout.
-  time.timeZone = "Europe/Amsterdam";
+  # ⇩ Timezone comes from local.nix; locale/keyboard layout below.
+  time.timeZone = local.timeZone;
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.xserver.xkb = {

@@ -1,4 +1,4 @@
-{...}: {
+{local, ...}: {
   programs.niri.settings = {
     # Stylix's niri target sets border/focus-ring colors and the cursor, so we
     # only describe behaviour here.
@@ -18,7 +18,7 @@
 
     # ⇩ EDIT ME: name your outputs (`niri msg outputs` lists them) for scale/pos.
     outputs."eDP-1" = {
-      scale = 1.0;
+      scale = local.monitorScale;
     };
 
     layout = {

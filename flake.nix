@@ -48,8 +48,11 @@
     # The platform the NNN machine runs on.
     hostSystem = "x86_64-linux";
 
-    # ⇩ EDIT ME: pick your login username.
-    username = "nnn";
+    # Personal, machine-local settings. Tracked with placeholder defaults but
+    # marked skip-worktree so your real values never get committed:
+    #   git update-index --skip-worktree local.nix
+    local = import ./local.nix;
+    username = local.username;
 
     # Helper so `nix fmt` / `nix develop` work from macOS or Linux.
     devSystems = [
@@ -63,7 +66,7 @@
   in {
     nixosConfigurations.nnn = nixpkgs.lib.nixosSystem {
       system = hostSystem;
-      specialArgs = {inherit inputs username;};
+      specialArgs = {inherit inputs username local;};
       modules = [
         niri.nixosModules.niri
         noctalia.nixosModules.default
@@ -83,7 +86,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "hm-bak";
-          home-manager.extraSpecialArgs = {inherit inputs username;};
+          home-manager.extraSpecialArgs = {inherit inputs username local;};
           # niri-flake auto-imports its home modules (config + stylix) into
           # every user when home-manager runs as a NixOS module, so we only
           # add noctalia's here. Importing the niri ones again double-declares
