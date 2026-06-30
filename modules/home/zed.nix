@@ -1,16 +1,37 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   # Zed — the GUI code editor. Neovim stays the terminal `$EDITOR`
   # (see modules/home/neovim.nix); Zed is what opens when you double-click a
   # text file in Nautilus or pick "open with default" from anywhere else.
   #
-  # Theming is automatic: Stylix has a zed target (enabled by stylix.enable in
-  # modules/nixos/stylix.nix) that, once programs.zed-editor is on, writes a
-  # Base16 Kanagawa theme + our Maple Mono / Noto fonts into userSettings, so
-  # Zed tracks the same palette as everything else — no theme config needed here.
+  # Stylix's zed target syncs our Maple Mono / Noto fonts into Zed. For the
+  # colors we don't use Stylix's mechanically-generated "Base16 Kanagawa" — its
+  # base16 mapping makes keywords a harsh red and its template emits an
+  # appearance Zed rejects. Instead we use the hand-tuned "Kanagawa Wave" from
+  # the kanagawa-themes extension (declared below so it installs reproducibly).
   programs.zed-editor = {
     enable = true;
 
+    # Auto-installed on startup. Names come from the Zed extension registry:
+    # https://github.com/zed-industries/extensions
+    extensions = [
+      "kanagawa-themes" # color theme, selected below
+      "catppuccin-icons" # file-type icon theme, selected below
+      "nix" # Nix language support
+      "html" # HTML language support
+    ];
+
     userSettings = {
+      # Hand-tuned Kanagawa from the extension above. mkForce because the Stylix
+      # zed target also sets `theme` (to its harsh Base16 build).
+      theme = lib.mkForce "Kanagawa Wave";
+
+      # File-type icons from the catppuccin-icons extension above.
+      icon_theme = "Catppuccin Frappé";
+
       # Nix owns the package; don't let Zed try to update itself.
       auto_update = false;
 
@@ -20,9 +41,12 @@
         metrics = false;
       };
 
-      # Pick up per-project toolchains from the direnv shells managed in
-      # modules/home/direnv.nix.
-      load_direnv = "shell_hook";
+      # Load the per-project devenv/direnv environment (modules/home/direnv.nix)
+      # by running `direnv export` against the project root directly, rather than
+      # only inheriting it from the shell Zed was launched from. Without this,
+      # opening a folder cold misses the environment unless direnv had already
+      # loaded in the launching shell.
+      load_direnv = "direct";
     };
   };
 
