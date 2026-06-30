@@ -7,7 +7,7 @@
   # CLI bundle. All get themed by Stylix (GTK + base16).
   home.packages = [
     # Zen browser — Firefox-based, from the community flake (beta channel).
-    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Nautilus (GNOME Files): a sensible GTK file manager. Pairs with the gvfs
     # service enabled in modules/nixos/desktop.nix for trash + mounting, and

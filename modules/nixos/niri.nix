@@ -9,7 +9,7 @@
   # Use niri-flake's own prebuilt package (built against its nixpkgs) so it
   # comes from niri.cachix.org instead of compiling from source. This is the
   # exact build the niri-flake settings schema targets.
-  programs.niri.package = inputs.niri.packages.${pkgs.system}.niri-stable;
+  programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable;
 
   # Wayland portals: gnome backend for screencasting, gtk for file pickers.
   xdg.portal = {

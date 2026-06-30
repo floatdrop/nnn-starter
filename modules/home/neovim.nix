@@ -5,6 +5,11 @@
     viAlias = true;
     vimAlias = true;
 
+    # We don't use the Ruby/Python remote-plugin providers; opt out explicitly
+    # (also matches the new home-manager defaults and silences the warning).
+    withRuby = false;
+    withPython3 = false;
+
     # LSP servers + tools, provided by Nix instead of mason.
     extraPackages = with pkgs; [
       lua-language-server
@@ -52,7 +57,7 @@
       nvim-web-devicons
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- ── Sane defaults ─────────────────────────────────────────────────────
       vim.g.mapleader = " "
       vim.g.maplocalleader = " "

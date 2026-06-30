@@ -9,7 +9,7 @@
     enable = true;
 
     # Prebuilt package from noctalia.cachix.org (see modules/nixos/noctalia.nix).
-    package = inputs.noctalia.packages.${pkgs.system}.default;
+    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     # Run as a systemd user service tied to the graphical (niri) session so it
     # starts and stops with your login.

@@ -11,6 +11,6 @@
     recommendedServices.enable = true;
     # Use upstream's prebuilt package straight from noctalia.cachix.org instead
     # of rebuilding the (large, ~hour) C++ tree against our nixpkgs.
-    package = inputs.noctalia.packages.${pkgs.system}.default;
+    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 }
