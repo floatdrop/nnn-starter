@@ -13,6 +13,10 @@
       pyright
       rust-analyzer
       typescript-language-server
+      gopls # go LSP
+      go # gopls shells out to the go toolchain
+      zls # zig LSP
+      zig # zls shells out to the zig toolchain
       stylua
       ripgrep
       fd
@@ -110,7 +114,7 @@
       -- LSP
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
-      local servers = { "nil_ls", "lua_ls", "pyright", "rust_analyzer", "ts_ls" }
+      local servers = { "nil_ls", "lua_ls", "pyright", "rust_analyzer", "ts_ls", "gopls", "zls" }
       for _, server in ipairs(servers) do
         lspconfig[server].setup({ capabilities = capabilities })
       end
