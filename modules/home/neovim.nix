@@ -72,9 +72,14 @@
       o.clipboard = "unnamedplus"
 
       -- ── Plugins ───────────────────────────────────────────────────────────
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
-        indent = { enable = true },
+      -- nvim-treesitter "main" branch: there is no more `.configs` module or
+      -- `.setup{}`. Parsers are provided by Nix (withAllGrammars) and live on
+      -- the runtimepath, so we just start treesitter highlighting per buffer.
+      -- (Indentation stays on Neovim's smartindent, set above.)
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
       require("gitsigns").setup()
       require("lualine").setup({ options = { theme = "auto", globalstatus = true } })
