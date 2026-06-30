@@ -43,7 +43,9 @@ cd ~/nnn-starter
 # 2. Generate real hardware config for THIS machine.
 sudo nixos-generate-config --show-hardware-config > hosts/nnn/hardware-configuration.nix
 
-# 3. Edit the placeholders (see below).
+# 3. Put your identity in local.nix (see Placeholders below), then keep your
+#    edits out of git history:
+git update-index --skip-worktree local.nix
 
 # 4. Build & switch.
 sudo nixos-rebuild switch --flake .#nnn
@@ -54,19 +56,28 @@ After the first build, rebuild with `nh os switch` (aliased to `rebuild`) or
 
 ## Placeholders to edit
 
+Your personal settings live in one place — [`local.nix`](local.nix). It's
+tracked with neutral defaults but marked `skip-worktree` (step 3) so your real
+values never get staged or committed.
+
 | What | Where |
 |------|-------|
-| **Username** | `username` in [`flake.nix`](flake.nix) |
+| **Username, hostname, full name** | [`local.nix`](local.nix) |
+| **Git identity** (name, email) | [`local.nix`](local.nix) |
+| **Timezone** | [`local.nix`](local.nix) |
+| **Monitor scale** | [`local.nix`](local.nix) |
 | **Hardware** | `hosts/nnn/hardware-configuration.nix` (generated, step 2 above) |
-| **Timezone / locale / keyboard** | [`hosts/nnn/default.nix`](hosts/nnn/default.nix) |
-| **Git identity** | `userName` / `userEmail` in [`modules/home/git.nix`](modules/home/git.nix) |
-| **Monitor name / scale** | `outputs` in [`modules/home/niri.nix`](modules/home/niri.nix) |
-| **nh flake path** | `programs.nh.flake` in [`modules/home/cli.nix`](modules/home/cli.nix) |
+| **Locale / keyboard layout** | [`hosts/nnn/default.nix`](hosts/nnn/default.nix) |
+| **Monitor name / position** | `outputs` in [`modules/home/niri.nix`](modules/home/niri.nix) |
+
+> Editing the defaults themselves (e.g. to change the placeholders this repo
+> ships) needs `git update-index --no-skip-worktree local.nix` first.
 
 ## Layout
 
 ```
 flake.nix              # inputs + the single `nixosConfigurations.nnn`
+local.nix              # your machine-local identity (skip-worktree)
 hosts/nnn/             # host: hardware + locale/timezone
 modules/nixos/         # system: boot, audio, niri, noctalia, stylix, users…
 modules/home/          # user: zsh, ghostty, neovim, niri keybinds, cli tools…
