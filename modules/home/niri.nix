@@ -95,6 +95,7 @@
       # Screenshots
       "Print".action.screenshot = {};
       "Mod+Print".action.screenshot-window = {};
+      "Ctrl+Print".action.screenshot-screen = {};
 
       # Help + session
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
