@@ -80,6 +80,10 @@
 
         {
           nixpkgs.config.allowUnfree = true;
+          # Vesktop builds Vencord with pnpm, which nixpkgs currently marks
+          # insecure. It's a build-time tool only; allow it by name so the rule
+          # survives pnpm version bumps. (See modules/home/discord.nix.)
+          nixpkgs.config.allowInsecurePredicate = pkg: nixpkgs.lib.getName pkg == "pnpm";
           nixpkgs.overlays = [
             niri.overlays.niri
             noctalia.overlays.default

@@ -11,6 +11,7 @@
     ./direnv.nix
     ./claude-code.nix
     ./apps.nix
+    ./discord.nix
   ];
 
   home.username = username;
