@@ -19,7 +19,8 @@ run one command, and get a cohesive, themed, developer-ready Wayland desktop.
 | Theming      | [Stylix](https://github.com/nix-community/stylix) with the **Kanagawa** palette — one scheme themes everything |
 | Terminal     | [Ghostty](https://ghostty.org) |
 | Shell + prompt | Zsh + [Starship](https://starship.rs) (autosuggestions, syntax highlighting, fzf, zoxide, atuin) |
-| Editor       | Neovim, preconfigured (LSP, treesitter, telescope, completion) |
+| Editor (GUI) | [Zed](https://zed.dev) — themed via Stylix; default handler for text/source files |
+| Editor (terminal) | Neovim, preconfigured (LSP, treesitter, telescope, completion); the `$EDITOR` |
 | Browser      | [Zen](https://zen-browser.app) (beta channel, via the community flake) |
 | File manager | [Nautilus](https://apps.gnome.org/Nautilus/) (GNOME Files) |
 | Font         | Maple Mono NF |
