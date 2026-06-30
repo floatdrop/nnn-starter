@@ -26,6 +26,21 @@
     };
   };
 
+  # Upstream's dev.zed.Zed.desktop runs `zeditor %U`, which opens files in the
+  # *existing* Zed workspace. We want Nautilus double-clicks to land in a fresh
+  # window, so define our own entry that adds Zed's `--new` flag and point the
+  # MIME defaults below at it instead.
+  xdg.desktopEntries."zed-new-window" = {
+    name = "Zed (new window)";
+    genericName = "Text Editor";
+    exec = "zeditor --new %U";
+    icon = "zed";
+    type = "Application";
+    startupNotify = true;
+    categories = ["Utility" "TextEditor" "Development" "IDE"];
+    mimeType = ["text/plain" "application/x-zerosize" "x-scheme-handler/zed"];
+  };
+
   # Make Zed the default GUI handler for plain-text and source files. The
   # zen-browser module (modules/home/apps.nix) also claims text/plain, but only
   # with lib.mkDefault, so these plain assignments win. We deliberately leave
@@ -33,7 +48,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = let
-      zed = "dev.zed.Zed.desktop";
+      zed = "zed-new-window.desktop";
     in {
       "text/plain" = zed;
       "text/markdown" = zed;
