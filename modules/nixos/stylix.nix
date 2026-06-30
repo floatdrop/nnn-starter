@@ -10,11 +10,9 @@
     # instead: stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
     base16Scheme = ../../themes/kanagawa.yaml;
 
-    # A subtle Kanagawa-toned gradient wallpaper, generated at build time so we
-    # don't have to vendor a binary image. Drop in your own with a path here.
-    image = pkgs.runCommand "kanagawa-wallpaper.png" {nativeBuildInputs = [pkgs.imagemagick];} ''
-      magick -size 3840x2160 gradient:'#16161D'-'#1F1F28' "$out"
-    '';
+    # "Static mind, like the sea" (静心如海) — a meditating pepe before Hokusai's
+    # Great Wave off Kanagawa, vendored in-repo (pngquant-optimized).
+    image = ../../themes/wallpaper.png;
 
     # A hint of terminal transparency for that layered desktop look.
     opacity.terminal = 0.95;
