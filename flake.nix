@@ -54,7 +54,7 @@
     # marked skip-worktree so your real values never get committed:
     #   git update-index --skip-worktree local.nix
     local = import ./local.nix;
-    username = local.username;
+    inherit (local) username;
 
     # Helper so `nix fmt` / `nix develop` work from macOS or Linux.
     devSystems = [
