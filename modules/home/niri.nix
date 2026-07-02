@@ -120,6 +120,8 @@
       "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
       "XF86AudioNext".action.spawn = ["playerctl" "next"];
       "XF86AudioPrev".action.spawn = ["playerctl" "previous"];
+      # Internal panel. modules/nixos/apple-studio-display.nix overrides these to
+      # also drive a docked Apple Studio Display when that module is enabled.
       "XF86MonBrightnessUp".action.spawn = ["brightnessctl" "set" "5%+"];
       "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "5%-"];
     };
