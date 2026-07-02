@@ -1,4 +1,12 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  # `nix-shell` / `nix-shell -p` hardcode bash. any-nix-shell re-execs zsh
+  # inside the ad-hoc environment so we keep our shell, aliases, and prompt.
+  home.packages = [pkgs.any-nix-shell];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -40,6 +48,9 @@
       # Make Ctrl-arrow move by word.
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+
+      # Keep zsh inside `nix-shell` instead of falling back to bash.
+      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
     '';
   };
 }
