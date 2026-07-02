@@ -33,18 +33,12 @@
     enableZshIntegration = true;
     options = ["--cmd cd"]; # `cd` becomes smart, keeps muscle memory.
   };
-  # home-manager loads `zoxide init` near the top of .zshrc, but direnv/atuin
-  # init afterwards and re-touch chpwd_functions. zoxide's startup "doctor"
+  # home-manager loads `zoxide init` near the top of .zshrc, but direnv
+  # inits afterwards and re-touches chpwd_functions. zoxide's startup "doctor"
   # heuristic wants to be initialized last, so it prints a one-off
   # "possible configuration issue" warning even though the hook is registered
   # and tracking works fine. Silence the false positive.
   home.sessionVariables._ZO_DOCTOR = "0";
-
-  programs.atuin = {
-    enable = true;
-    enableZshIntegration = true;
-    settings.style = "compact";
-  };
 
   programs.tealdeer = {
     enable = true;

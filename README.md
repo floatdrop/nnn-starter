@@ -18,7 +18,7 @@ run one command, and get a cohesive, themed, developer-ready Wayland desktop.
 | Shell/UI     | [Noctalia](https://github.com/noctalia-dev/noctalia-shell) **v5** (bar, launcher, notifications, lock, control center) |
 | Theming      | [Stylix](https://github.com/nix-community/stylix) with the **Kanagawa** palette — one scheme themes everything |
 | Terminal     | [Ghostty](https://ghostty.org) |
-| Shell + prompt | Zsh + [Starship](https://starship.rs) (autosuggestions, syntax highlighting, fzf, zoxide, atuin) |
+| Shell + prompt | Zsh + [Starship](https://starship.rs) (autosuggestions, syntax highlighting, fzf, zoxide) |
 | Editor (GUI) | [Zed](https://zed.dev) — themed via Stylix; default handler for text/source files |
 | Editor (terminal) | Neovim, preconfigured (LSP, treesitter, telescope, completion); the `$EDITOR` |
 | Browser      | [Zen](https://zen-browser.app) (beta channel, via the community flake) |
@@ -28,7 +28,7 @@ run one command, and get a cohesive, themed, developer-ready Wayland desktop.
 
 ### Modern command-line toolset
 `lsd` · `fzf` · `bat` · `btop` · `ripgrep` · `fd` · `zoxide` · `eza` · `yazi` ·
-`dust` · `duf` · `procs` · `bandwhich` · `gping` · `zellij` · `atuin` ·
+`dust` · `duf` · `procs` · `bandwhich` · `gping` · `zellij` ·
 `tealdeer` · `jq` · `yq` · `lazygit` · `delta` · `gh` · `direnv` + `nix-direnv` ·
 `nh` · `nom` · `claude` ([Claude Code](https://github.com/anthropics/claude-code)).
 Old names are aliased to the new tools (`ls`→`lsd`, `cat`→`bat`,
