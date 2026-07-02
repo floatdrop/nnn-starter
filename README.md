@@ -6,8 +6,8 @@
 
 > Three letters, zero compromise — now with batteries included.
 
-An opinionated [omarchy](https://omarchy.org)-style NixOS starter for the **NNN
-stack**: **N**ixOS + **N**iri + **N**octalia. Clone it, set two placeholders,
+An opinionated [omarchy](https://omarchy.org)-style NixOS starter for the [**NNN
+stack**](https://the-nnn-stack.github.io/): **N**ixOS + **N**iri + **N**octalia. Clone it, set two placeholders,
 run one command, and get a cohesive, themed, developer-ready Wayland desktop.
 
 ## What you get
