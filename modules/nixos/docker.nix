@@ -10,6 +10,13 @@
       enable = true;
       dates = "weekly";
     };
+
+    # Use the classic overlay2 image store instead of the containerd snapshotter
+    # (Docker 29's default). Under the containerd store, cAdvisor's docker
+    # handler can't resolve container names, so containers lose their `name`
+    # label and per-container CPU/mem dashboards (see the zoxy-benchmark
+    # monitoring stack) go blank.
+    daemon.settings.features.containerd-snapshotter = false;
   };
 
   # Let the user drive Docker without sudo. NOTE: membership in the `docker`
